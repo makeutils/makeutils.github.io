@@ -6,8 +6,6 @@ This project was kicked off during a company wide pet projects day.
 
 The `make: utils` project is intended to be a proof of concept about dynamically managing boilerplate logic dependencies in your Makefile without the need of actually committing that logic and dependency files into your project.
 
-The project takes inspiration on tools like `gradle`, `maven`, `cargo`, etc.
-
 Goals:
 
 - To have a reliable tool you can depend on for including dependencies into your Makefiles.
