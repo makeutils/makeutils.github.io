@@ -44,27 +44,55 @@ include $(call .include,terraform,0.2.1)
 
 All variables and calls in the example are just representative and not a current working version.
 
-## The TODO's
+## .gitignore
+
+The most basic idea is to simply ignore anything starting with `makeutils.*`
+
+## Naming convention
+
+- Project names hosted under the `makeutils` organizations should be prefixed with `makeutil-` followed by the name of the module
+- Branch names and tags are used for versioning
+- The module logic should be stored in a single file located at the root of the project and should be named `makeutil-$NAME.mak`
+
+Example for `terraform` module version `0.0.1`:
+
+```text
+https://github.com/makeutils/makeutil-terraform/blob/0.0.1/makeutil-terraform.mak
+```
+
+## Importing modules after manual bootstrapping
+
+You need to have the name and version of the module you want to import, in this example it is going to be `terraform` version `0.0.1`
+
+```make
+include $(call .include,terraform,0.0.1)
+```
+
+## The TODO's for the proof of concept
 
 - Pages
   - ~~explain what is this project.~~
   - ~~explain the bootstrapping process~~
 - Proof of concept
   - ~~create the initial bootstrap project, intended to remain there~~
-  - implement manual bootstrap using curl
-  - load core dynamically
-  - propose gitignore strategy
-  - propose naming convention
-  - explain how to import a module (go builds)
-- plans for the future
-  - auto detect download tool
-  - auto import dependencies using a dependency file
-  - clean dependencies
-  - document gitignore strategy
-  - official naming convention
-  - create a fancy Logo
+  - ~~implement manual bootstrap using curl~~
+  - ~~propose gitignore strategy~~
+  - ~~propose naming convention~~
+  - ~~explain how to import a module~~
+
+## Plans for the future, next steps
+
+- auto detect download tool
+- load core dynamically
+- auto import dependencies using a dependency file
+- clean dependencies
+- document gitignore strategy
+- official naming convention
+- create a fancy Logo
 
 ## Scraps and notes
+
+Excuse me, simply ignore this
 
 ```make
 # $(call __MAKEUTIL_FILENAME,$(1),$(2))
