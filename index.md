@@ -39,7 +39,7 @@ goal2: goal1
 BOOTSTRAP := $(trust the magic)
 
 # including dependencies
-$(call import, go-builds,1.2.0)
+include $(call .include,terraform,0.2.1)
 ```
 
 All variables and calls in the example are just representative and not a current working version.
@@ -63,3 +63,11 @@ All variables and calls in the example are just representative and not a current
   - document gitignore strategy
   - official naming convention
   - create a fancy Logo
+
+## Scraps and notes
+
+```make
+# $(call __MAKEUTIL_FILENAME,$(1),$(2))
+# $(call __MAKEUTIL_URL,$(1),$(2))
+include $(call .include,bootstrap,master)
+```
