@@ -25,21 +25,28 @@ This section is a reminder: This is s a proof of concept that may evolve in the 
 The anatomy of a make file during the proof of concept will look like this:
 
 ```make
-# You logic comes at the very top
+#
+# Your logic comes at the very top
+#
 
-COMPILER_VERSION:=3.2.42
+export AWS_PROFILE=customer
+export AWS_SDK_LOAD_CONFIG=1
 
-goal1:
-  compile-file.sh
+report:
+  $(TERRAFORM) show > report.txt
 
-goal2: goal1
-  package-file-sh
+#
+# The manual copy/pasted bootstrap code goes here
+#
 
-# the manual bootstrap goes here
 BOOTSTRAP := $(trust the magic)
 
-# including dependencies
-include $(call .include,terraform,0.2.1)
+#
+# Here you can include your dependencies
+#
+
+include $(call .include,terraform,0.0.1)
+
 ```
 
 All variables and calls in the example are just representative and not a current working version.
