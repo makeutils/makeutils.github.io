@@ -32,6 +32,9 @@ The anatomy of a make file during the proof of concept will look like this:
 export AWS_PROFILE=customer
 export AWS_SDK_LOAD_CONFIG=1
 
+default:
+  @echo Success!
+
 report:
   $(TERRAFORM) show > report.txt
 
