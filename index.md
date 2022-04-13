@@ -37,9 +37,11 @@ report:
 
 #
 # The manual copy/pasted bootstrap code goes here
+# You will need to trust the magic.
 #
 
-BOOTSTRAP := $(trust the magic)
+_:=$(or $(wildcard makeutils.bootstrap-master), $(shell curl -so makeutils.bootstrap-master https://raw.githubusercontent.com/makeutils/makeutil-bootstrap/master/makeutil-bootstrap.mak))
+include makeutils.bootstrap-master
 
 #
 # Here you can include your dependencies
