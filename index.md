@@ -24,7 +24,7 @@ This section is a reminder: This is s a proof of concept that may evolve in the 
 
 The anatomy of a make file during the proof of concept will look like this:
 
-```Makefile 
+```make
 # You logic comes at the very top
 
 COMPILER_VERSION:=3.2.42
