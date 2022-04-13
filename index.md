@@ -1,5 +1,7 @@
 # make: utils
 
+See: [https://github.com/makeutils](https://github.com/makeutils)
+
 This project was kicked off during a company wide pet projects day.
 
 The `make: utils` project is intended to be a proof of concept about dynamically managing boilerplate logic dependencies in your Makefile without the need of actually committing that logic and dependency files into your project.
@@ -97,6 +99,7 @@ include $(call .include,terraform,0.0.1)
 - clean dependencies
 - document gitignore strategy
 - official naming convention
+- strategy and specification for using other dependencies not hosted in makeutils
 - create a fancy Logo
 
 ## Scraps and notes
