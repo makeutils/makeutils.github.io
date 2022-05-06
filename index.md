@@ -2,22 +2,37 @@
 
 See: [https://github.com/makeutils](https://github.com/makeutils)
 
-This project was kicked off during a company wide pet projects day.
+The `make: utils` project is intended to be a tool for dynamically managing boilerplate logic dependencies in your Makefile without the need of actually committing that logic and dependency files into your project.
 
-The `make: utils` project is intended to be a proof of concept about dynamically managing boilerplate logic dependencies in your Makefile without the need of actually committing that logic and dependency files into your project.
+<!-- TOC depthFrom:2 -->
 
-Goals:
+- [Goals](#goals)
+- [Work in progress](#work-in-progress)
+- [Example from the proof of concept](#example-from-the-proof-of-concept)
+  - [The Bootstrapping Process](#the-bootstrapping-process)
+  - [.gitignore](#gitignore)
+  - [Naming convention](#naming-convention)
+  - [Importing modules after manual bootstrapping](#importing-modules-after-manual-bootstrapping)
+- [Plans for the future, next steps](#plans-for-the-future-next-steps)
+- [Origins and Proof of Concept](#origins-and-proof-of-concept)
 
-- To have a reliable tool you can depend on for including dependencies into your Makefiles.
-- Implement and create a set of useful and dependable make utilities
+<!-- /TOC -->
 
-## Proof of concept
+## Goals
 
-This section is a reminder: This is s a proof of concept that may evolve in the future into a dependable project.
+To have a reliable tool you can depend on for including dependencies into your Makefiles.
 
-## The Bootstrapping Process
+Implement and create a set of useful and dependable make utilities
 
-- Manually copy paste a small snippet from the [makeutil-bootstrap](https://github.com/makeutils/makeutil-bootstrap) project into you makefile,
+## Work in progress
+
+This section is a reminder: This whole project is right now "Work in Progress" that may evolve in the future into a dependable and stable one.
+
+## Example from the proof of concept
+
+### The Bootstrapping Process
+
+- Manually copy paste a small snippet from the [core](https://github.com/makeutils/makeutil-bootstrap) project into you makefile,
 - Download basic definitions for streaming resources form network
 - Download core utilities using the basic networking abilities
 - Offer import utility you can use immediately in your makefile
@@ -56,11 +71,11 @@ include $(call .include,terraform,0.0.1)
 
 All variables and calls in the example are just representative and not a current working version.
 
-## .gitignore
+### .gitignore
 
 The most basic idea is to simply ignore anything starting with `makeutils.*`
 
-## Naming convention
+### Naming convention
 
 - Project names hosted under the `makeutils` organizations should be prefixed with `makeutil-` followed by the name of the module
 - Branch names and tags are used for versioning
@@ -72,7 +87,7 @@ Example for `terraform` module version `0.0.1`:
 https://github.com/makeutils/makeutil-terraform/blob/0.0.1/makeutil-terraform.mak
 ```
 
-## Importing modules after manual bootstrapping
+### Importing modules after manual bootstrapping
 
 You need to have the name and version of the module you want to import, in this example it is going to be `terraform` version `0.0.1`
 
@@ -80,35 +95,41 @@ You need to have the name and version of the module you want to import, in this 
 include $(call .include,terraform,0.0.1)
 ```
 
-## The TODO's for the proof of concept
-
-- Pages
-  - ~~explain what is this project.~~
-  - ~~explain the bootstrapping process~~
-- Proof of concept
-  - ~~create the initial bootstrap project, intended to remain there~~
-  - ~~implement manual bootstrap using curl~~
-  - ~~propose gitignore strategy~~
-  - ~~propose naming convention~~
-  - ~~explain how to import a module~~
-
 ## Plans for the future, next steps
 
-- auto detect download tool
-- load core dynamically
-- auto import dependencies using a dependency file
-- clean dependencies
-- document gitignore strategy
-- official naming convention
-- strategy and specification for using other dependencies not hosted in makeutils
-- create a fancy Logo
+- Documentation
+  - explain clearly what is this project.
+  - explain the bootstrapping process
+  - explain how to import a module
+  - create an example, getting started
 
-## Scraps and notes
+- Open tasks
+  - propose gitignore strategy
+  - propose naming convention
+    - propose local file naming convention
+    - propose repositories naming convention
+  - auto detect download tool
+  - load core dynamically
+  - auto import dependencies using a dependency file
+  - clean dependencies
+  - document gitignore strategy
+  - official naming convention
+  - strategy and specification for using other dependencies not hosted in makeutils
+  - create a fancy Logo
 
-Excuse me, simply ignore this
+## Origins and Proof of Concept
 
-```make
-# $(call __MAKEUTIL_FILENAME,$(1),$(2))
-# $(call __MAKEUTIL_URL,$(1),$(2))
-include $(call .include,bootstrap,master)
+The basic premise is that you can download and include files using a template similar to this:
+
+```Makefile
+_:=$(or $(wildcard $(THE_FILE)), $(shell $(FETCH_FILE_COMMAND)))
+include $(THE_FILE)
 ```
+
+The template above is a [side idea](https://github.com/malcos/makefile-semver/blob/master/support/docs/auto-include.md) from another project.
+
+This project was started during a company wide pet projects day. The results of that day can be seen under the `POC` tag of these projects:
+
+- Original version of this page: [makeutils.github.io](https://github.com/makeutils/makeutils.github.io/tree/POC)
+- Bootstrap logic: [makeutil-bootstrap](https://github.com/makeutils/makeutil-bootstrap/tree/POC) (now moved to [core](https://github.com/makeutils/core))
+- Demo terraform makeutil module: [makeutil-terraform](https://github.com/makeutils/makeutil-terraform/tree/POC)
