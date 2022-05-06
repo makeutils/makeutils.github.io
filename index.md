@@ -121,7 +121,7 @@ include $(call .include,terraform,0.0.1)
 
 The basic premise is that you can download and include files using a template similar to this:
 
-```Makefile
+```make
 _:=$(or $(wildcard $(THE_FILE)), $(shell $(FETCH_FILE_COMMAND)))
 include $(THE_FILE)
 ```
